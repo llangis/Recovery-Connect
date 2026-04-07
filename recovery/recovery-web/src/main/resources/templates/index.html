@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{partial :: head}"/>
+    <title>Recovery Platform</title>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav th:replace="~{nav :: navbar}"></nav>
+
+<!-- Hero Section -->
+<div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-20 text-center">
+        <h1 class="text-5xl font-bold mb-4 tracking-tight">Recovery Platform</h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+            Explore the 12 Steps, 12 Traditions, and Promises of recovery fellowships.
+        </p>
+    </div>
+</div>
+
+<!-- Fellowship Cards -->
+<div class="max-w-5xl mx-auto px-4 -mt-12 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- AA Card -->
+        <a th:href="@{/aa}" class="card-hover block bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-blue-600">
+            <div class="p-8 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span class="text-3xl font-black text-blue-600">AA</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Alcoholics Anonymous</h2>
+                <p class="text-gray-500">Recovery from alcoholism through the 12-step program founded in 1935.</p>
+                <div class="mt-6 inline-flex items-center text-blue-600 font-semibold">
+                    Explore
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+        <!-- NA Card -->
+        <a th:href="@{/na}" class="card-hover block bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-emerald-600">
+            <div class="p-8 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <span class="text-3xl font-black text-emerald-600">NA</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Narcotics Anonymous</h2>
+                <p class="text-gray-500">Recovery from drug addiction through a fellowship founded in 1953.</p>
+                <div class="mt-6 inline-flex items-center text-emerald-600 font-semibold">
+                    Explore
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+        <!-- CA Card -->
+        <a th:href="@{/ca}" class="card-hover block bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-pink-600">
+            <div class="p-8 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+                    <span class="text-3xl font-black text-pink-600">CA</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Cocaine Anonymous</h2>
+                <p class="text-gray-500">Recovery from cocaine and all mind-altering substances since 1982.</p>
+                <div class="mt-6 inline-flex items-center text-pink-600 font-semibold">
+                    Explore
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
+    <p>Recovery Platform &mdash; Steps, Traditions &amp; Promises</p>
+</footer>
+
+</body>
+</html>

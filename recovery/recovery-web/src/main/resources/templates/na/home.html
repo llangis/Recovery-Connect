@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{partial :: head}"/>
+    <title>NA - Narcotics Anonymous</title>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav th:replace="~{nav :: navbar}"></nav>
+
+<div class="bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-16 text-center">
+        <div class="w-24 h-24 mx-auto mb-6 bg-emerald-700 rounded-full flex items-center justify-center shadow-lg">
+            <span class="text-4xl font-black">NA</span>
+        </div>
+        <h1 class="text-4xl font-bold mb-3">Narcotics Anonymous</h1>
+        <p class="text-emerald-200 text-lg max-w-xl mx-auto">
+            A nonprofit fellowship of people for whom drugs had become a major problem.
+            Recovery from the disease of addiction through the 12-step program.
+        </p>
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-4 -mt-8 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a th:href="@{/na/steps}" class="card-hover block bg-white rounded-2xl shadow-lg p-8 text-center border-t-4 border-emerald-600">
+            <div class="text-4xl mb-3">&#x1F4D6;</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">The 12 Steps</h3>
+            <p class="text-gray-500 text-sm">The principles that made recovery possible.</p>
+        </a>
+        <a th:href="@{/na/traditions}" class="card-hover block bg-white rounded-2xl shadow-lg p-8 text-center border-t-4 border-emerald-600">
+            <div class="text-4xl mb-3">&#x1F3DB;</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">The 12 Traditions</h3>
+            <p class="text-gray-500 text-sm">The guidelines that keep the fellowship alive and free.</p>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>

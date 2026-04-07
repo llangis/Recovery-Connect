@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link th:replace="~{partial :: bootstrap}"/>
+    <title>Recovery Platform - Home</title>
+</head>
+<body>
+<header>
+    <nav th:replace="~{nav :: navbar}"></nav>
+</header>
+<form class="mb-3" method="get" th:action="@{/step}">
+    <select name="fellowship" class="form-select d-inline-block w-auto">
+        <option value="">All Fellowships</option>
+        <option th:each="f : ${T(nbcc.recovery.dto.FellowshipType).values()}" th:value="${f}" th:text="${f}" th:selected="${f == selectedFellowship}"></option>
+    </select>
+    <button type="submit" class="btn btn-outline-primary btn-sm">Filter</button>
+</form>
+<div class="container mt-4">
+    <h1>Recovery Platform</h1>
+    <p>Steps, Traditions &amp; Promises for AA, NA, and CA fellowships.</p>
+</div>
+</body>
+</html>

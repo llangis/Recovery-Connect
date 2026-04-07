@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{partial :: head}"/>
+    <title>CA - The Promises</title>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav th:replace="~{nav :: navbar}"></nav>
+
+<div class="bg-gradient-to-r from-pink-800 to-pink-900 text-white py-12">
+    <div class="max-w-5xl mx-auto px-4">
+        <h1 class="text-3xl font-bold">The Promises</h1>
+        <p class="text-pink-200 mt-2">Cocaine Anonymous</p>
+    </div>
+</div>
+
+<div class="max-w-3xl mx-auto px-4 py-10 space-y-4">
+    <div th:each="promise : ${promises}" class="step-card border-pink-600">
+        <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                <span th:text="${promise.promiseNumber}"></span>
+            </div>
+            <div>
+                <p class="text-gray-700 text-lg" th:text="${promise.text}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(promises)}" class="text-center py-12 text-gray-400">
+        <p class="text-lg">No promises have been added for this fellowship yet.</p>
+    </div>
+</div>
+
+</body>
+</html>

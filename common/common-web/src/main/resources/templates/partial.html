@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<th:block th:fragment="head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aa: { light: '#dbeafe', DEFAULT: '#2563eb', dark: '#1e40af' },
+                        na: { light: '#d1fae5', DEFAULT: '#059669', dark: '#065f46' },
+                        ca: { light: '#fce7f3', DEFAULT: '#db2777', dark: '#9d174d' },
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .card-hover { @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl; }
+            .step-card { @apply bg-white rounded-2xl shadow-md p-6 border-l-4; }
+        }
+    </style>
+</th:block>
+</head>
+<body>
+</body>
+</html>

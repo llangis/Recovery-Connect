@@ -1,0 +1,73 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Nav</title></head>
+<body>
+<nav th:fragment="navbar" class="bg-gray-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Left: Brand + Fellowship Nav -->
+            <div class="flex items-center space-x-8">
+                <a th:href="@{/}" class="text-xl font-bold tracking-wide hover:text-gray-300 transition">
+                    Recovery Platform
+                </a>
+
+                <!-- Fellowship-scoped nav (only shows when inside a fellowship) -->
+                <div th:if="${fellowship != null}" class="hidden md:flex items-center space-x-1">
+                    <a th:href="@{'/' + ${fellowship}}"
+                       class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition"
+                       th:classappend="${#strings.endsWith(currentURI, '/' + fellowship)} ? 'bg-gray-700' : ''">
+                        Home
+                    </a>
+                    <a th:href="@{'/' + ${fellowship} + '/steps'}"
+                       class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition"
+                       th:classappend="${#strings.contains(currentURI, '/steps')} ? 'bg-gray-700' : ''">
+                        Steps
+                    </a>
+                    <a th:href="@{'/' + ${fellowship} + '/traditions'}"
+                       class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition"
+                       th:classappend="${#strings.contains(currentURI, '/traditions')} ? 'bg-gray-700' : ''">
+                        Traditions
+                    </a>
+                    <a th:href="@{'/' + ${fellowship} + '/promises'}"
+                       class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition"
+                       th:classappend="${#strings.contains(currentURI, '/promises')} ? 'bg-gray-700' : ''"
+                       th:if="${fellowship != 'na'}">
+                        Promises
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Fellowship Switcher + Auth -->
+            <div class="flex items-center space-x-4">
+
+                <!-- Fellowship switcher pills (only when inside a fellowship) -->
+                <div th:if="${fellowship != null}" class="hidden md:flex items-center space-x-1 bg-gray-800 rounded-full px-1 py-1">
+                    <a th:href="@{/aa}" class="px-3 py-1 rounded-full text-xs font-bold transition"
+                       th:classappend="${fellowship == 'aa'} ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white'">
+                        AA
+                    </a>
+                    <a th:href="@{/na}" class="px-3 py-1 rounded-full text-xs font-bold transition"
+                       th:classappend="${fellowship == 'na'} ? 'bg-emerald-600 text-white' : 'text-gray-400 hover:text-white'">
+                        NA
+                    </a>
+                    <a th:href="@{/ca}" class="px-3 py-1 rounded-full text-xs font-bold transition"
+                       th:classappend="${fellowship == 'ca'} ? 'bg-pink-600 text-white' : 'text-gray-400 hover:text-white'">
+                        CA
+                    </a>
+                </div>
+
+                <!-- Auth links -->
+                <div class="flex items-center space-x-3">
+                    <a th:if="${!isLoggedIn}" th:href="@{/register}" class="text-sm text-gray-300 hover:text-white transition">Register</a>
+                    <a th:if="${!isLoggedIn}" th:href="@{/login}" class="text-sm bg-white text-gray-900 px-4 py-1.5 rounded-full font-medium hover:bg-gray-200 transition">Login</a>
+                    <span th:if="${isLoggedIn}" class="text-sm text-gray-300" th:text="${username}"></span>
+                    <form th:if="${isLoggedIn}" th:action="@{/logout}" method="post" class="inline">
+                        <button type="submit" class="text-sm text-gray-300 hover:text-white transition">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
