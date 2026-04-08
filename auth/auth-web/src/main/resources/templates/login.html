@@ -2,7 +2,96 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="bootstrap">
     <th:block th:replace="~{partial :: bootstrap}"/>
-    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <title>Login — Recovery Connect</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .login-card .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .login-card .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .login-card .form-control:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #5bc0be;
+            box-shadow: 0 0 0 0.2rem rgba(91, 192, 190, 0.25);
+            color: #fff;
+        }
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 4;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #5bc0be, #3a7bd5);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.025em;
+            transition: transform 0.15s, box-shadow 0.15s;
+            color: #fff;
+        }
+        .btn-login:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(91, 192, 190, 0.4);
+            color: #fff;
+        }
+        .brand-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5bc0be, #3a7bd5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .login-card h2 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .login-card .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 1.75rem;
+        }
+        .register-link {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        .register-link a {
+            color: #5bc0be;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -10,39 +99,56 @@
     <div th:insert="~{nav :: nav}"></div>
 </header>
 
-<div class="container">
-    <main role="main" class="pb-3">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <h2 class="text-center">Login</h2>
+<div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 56px);">
+    <div class="col-11 col-sm-8 col-md-5 col-lg-4">
+        <div class="login-card p-4 p-md-5">
 
-                <div th:if="${param.error}" class="alert alert-danger text-center">
-                    <div>Invalid username or password.</div>
+            <div class="text-center">
+                <div class="brand-icon">
+                    <i class="bi bi-heart-pulse"></i>
+                </div>
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Sign in to Recovery Connect</p>
+            </div>
+
+            <div th:if="${param.error}" class="alert d-flex align-items-center py-2 px-3" role="alert"
+                 style="background: rgba(220, 53, 69, 0.15); border: 1px solid rgba(220, 53, 69, 0.3); color: #f8d7da; border-radius: 0.5rem;">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                <span>Invalid username or password.</span>
+            </div>
+
+            <div th:if="${param.logout}" class="alert d-flex align-items-center py-2 px-3" role="alert"
+                 style="background: rgba(25, 135, 84, 0.15); border: 1px solid rgba(25, 135, 84, 0.3); color: #badbcc; border-radius: 0.5rem;">
+                <i class="bi bi-check-circle me-2"></i>
+                <span>You have been logged out.</span>
+            </div>
+
+            <form th:action="@{/login}" method="post">
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-person input-icon"></i>
+                    <input type="text" name="username" th:value="${param.username}"
+                           class="form-control" placeholder="Username" required autofocus/>
                 </div>
 
-                <form th:action="@{/login}" method="post">
-                    <div class="form-group">
-                        <label class="control-label">Username:
-                            <input type="text" name="username" th:value="${param.username}" class="form-control" placeholder="Username" required/>
-                        </label>
-                    </div>
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-lock input-icon"></i>
+                    <input type="password" name="password"
+                           class="form-control" placeholder="Password" required/>
+                </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Password:
-                            <input type="password" name="password" class="form-control" placeholder="Password"
-                                   required/>
-                        </label>
-                    </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-login">
+                        Sign In <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+            </form>
 
-                    <div class="form-group">
-                        <label class="control-label">
-                            <input type="submit" value="Login" class="btn btn-primary"/>
-                        </label>
-                    </div>
-                </form>
+            <div class="text-center mt-4 register-link">
+                Don't have an account? <a th:href="@{/register}">Register here</a>
             </div>
+
         </div>
-    </main>
+    </div>
 </div>
 
 </body>

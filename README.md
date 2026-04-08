@@ -1,6 +1,6 @@
 # Recovery Connect Web Application
 
-![Recovery Connect Logo](recovery-connect-logo.png)
+![logo.png](logo.png)
 
 A fellowship recovery tracking platform built with **Java 21 & Spring Boot** for browsing and managing recovery content across AA, NA, and CA programs.
 

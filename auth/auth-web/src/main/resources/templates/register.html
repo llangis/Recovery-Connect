@@ -1,44 +1,171 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+    <meta charset="UTF-8"/>
+    <title>Register — Recovery Connect</title>
     <link th:replace="~{partial :: bootstrap}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+        }
+        .register-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .register-card .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .register-card .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .register-card .form-control:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #5bc0be;
+            box-shadow: 0 0 0 0.2rem rgba(91, 192, 190, 0.25);
+            color: #fff;
+        }
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 4;
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #5bc0be, #3a7bd5);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.025em;
+            transition: transform 0.15s, box-shadow 0.15s;
+            color: #fff;
+        }
+        .btn-register:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(91, 192, 190, 0.4);
+            color: #fff;
+        }
+        .brand-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5bc0be, #3a7bd5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .register-card h2 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .register-card .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 1.75rem;
+        }
+        .login-link {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        .login-link a {
+            color: #5bc0be;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .field-error {
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            color: #f8d7da;
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+            margin-top: 0.35rem;
+        }
+        .alert-message {
+            background: rgba(255, 193, 7, 0.15);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            color: #fff3cd;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-<div th:insert="~{nav :: navbar}"></div>
-<div class="container">
-    <main role="main" class="pb-3">
-        <h1>Register</h1>
-        <h4>User</h4>
-        <hr/>
-        <div th:unless="${message == null}" class="alert alert-warning" th:text="${message}"></div>
 
-        <!--/*@thymesVar id="user" type="nbcc.auth.domain.UserRegistration"*/-->
-        <form method="post" th:action="@{/register}" th:object="${user}">
-            <div>
-                <div class="form-group">
-                    <label class="form-label">User Name:
-                        <input th:field="*{username}" class="form-control"/>
-                    </label>
-                    <div class="alert alert-warning" th:errors="*{username}"></div>
+<div th:insert="~{nav :: navbar}"></div>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 56px);">
+    <div class="col-11 col-sm-8 col-md-5 col-lg-4">
+        <div class="register-card p-4 p-md-5">
+
+            <div class="text-center">
+                <div class="brand-icon">
+                    <i class="bi bi-person-plus"></i>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Email:
-                        <input th:field="*{email}" class="form-control"/>
-                    </label>
-                    <div class="alert alert-warning" th:errors="*{email}"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Password:
-                        <input th:field="*{password}" type="password" class="form-control"/>
-                    </label>
-                    <div class="alert alert-warning" th:errors="*{password}"></div>
-                </div>
+                <h2>Create Account</h2>
+                <p class="subtitle">Join Recovery Connect</p>
             </div>
-            <input type="submit" value="Register" class="btn btn-primary"/>
-        </form>
-    </main>
+
+            <div th:unless="${message == null}" class="alert alert-message d-flex align-items-center py-2 px-3 mb-3">
+                <i class="bi bi-info-circle me-2"></i>
+                <span th:text="${message}"></span>
+            </div>
+
+            <!--/*@thymesVar id="user" type="nbcc.auth.domain.UserRegistration"*/-->
+            <form method="post" th:action="@{/register}" th:object="${user}">
+
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-person input-icon"></i>
+                    <input th:field="*{username}" class="form-control" placeholder="Username"/>
+                    <div th:errors="*{username}" class="field-error"></div>
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-envelope input-icon"></i>
+                    <input th:field="*{email}" class="form-control" placeholder="Email address"/>
+                    <div th:errors="*{email}" class="field-error"></div>
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <i class="bi bi-lock input-icon"></i>
+                    <input th:field="*{password}" type="password" class="form-control" placeholder="Password"/>
+                    <div th:errors="*{password}" class="field-error"></div>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-register">
+                        Create Account <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+
+            </form>
+
+            <div class="text-center mt-4 login-link">
+                Already have an account? <a th:href="@{/login}">Sign in</a>
+            </div>
+
+        </div>
+    </div>
 </div>
+
 </body>
 </html>
